@@ -138,7 +138,7 @@ a:hover {
 
 @media (min-width: 768px) {
     .site-section-heading {
-        font-size: 4rem;
+        font-size: 2rem;
     }
 }
 
@@ -149,7 +149,7 @@ a:hover {
     position: absolute;
     width: 100px;
     height: 1px;
-    background: #000;
+    background: #fff;
 }
 
 .site-section-heading.text-center:after {
@@ -163,7 +163,7 @@ a:hover {
     position: absolute;
     width: 100px;
     height: 1px;
-    background: #000;
+    background: #fff;
 }
 
 .border-top {

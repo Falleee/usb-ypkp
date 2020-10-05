@@ -18,7 +18,7 @@ class M_dokumen extends CI_Model
         if($id_dokumen === null){
             return $this->db->get('dokumen')->result_array();
         }else{
-            return $this->db->get_where('dokumen',['id_dokumen'=>$id_dokumen])->result_array();    
+            return $this->db->get_where('dokumen',['id_dokumen'=>$id_dokumen]);    
         }
     }
 

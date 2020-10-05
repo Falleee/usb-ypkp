@@ -30,7 +30,13 @@ class Admin extends CI_Controller {
         $data['title'] = 'Dokumentasi';
         $data['login'] = $this->db->get_where('login',['no_induk' => 
         $this->session->userdata('no_induk')])->row_array();
-        $data['dokumen'] = $this->doku->getDokumen();
+        // $data['dokumen'] = $this->db->get('dokumen');
+        $this->db->select('dokumen.*, kategori.kategori nama_kategori');
+        $this->db->from('dokumen');
+        $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
+        $data['dokumen'] = $this->db->get();
+        $data['kategori'] = $this->db->get('kategori');
+        
         $this->load->view('admin/header',$data);
         $this->load->view('admin/sidebar', $data);
         $this->load->view('admin/dokumentasi',$data);
@@ -54,7 +60,7 @@ class Admin extends CI_Controller {
         $config['upload_path']      = './upload/';
         $config['allowed_types']    = 'png|gif|jpg|jpeg';
         $config['encrypt_name']     = true;
-        $config['max_size']         = 2050;
+        $config['max_size']         = 5050;
 
         $this->upload->initialize($config);
         if($this->upload->do_upload('nama_file')){
@@ -64,8 +70,10 @@ class Admin extends CI_Controller {
             $config['create_thumb']= FALSE;
             $config['mintain_ratio']= FALSE;
             $config['quality']='50%';
-            $config['width']=900;
-            $config['height']=900;
+            $config['x_axis'] = 900;
+            $config['y_axis'] = 900;
+            // $config['width']=900;
+            // $config['height']=900;
             $config['new_image']='./upload/'.$data['file_name'];
             $this->load->library('image_lib', $config);
             $this->image_lib->resize();
@@ -73,28 +81,17 @@ class Admin extends CI_Controller {
             $data_order['nama_file'] = $image_path; 
             
             $data_order = array(
-                'id_kategori' => $this->input->post('id_kategori'),
+                'id_kategori' => $this->input->post('kategori'),
                 'nama_file' => $image_path,
                 'judul' => $this->input->post('judul'),
                 'deskripsi' => $this->input->post('deskripsi')   
             );
             $this->db->insert('dokumen', $data_order);
+            // $insertId_dokumen = $this->db->insert;
             // $this->doku->createDokumen($data_order);
         }
         // Multiple Upload
-        $config['upload_path'] = './upload/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
- 
-        $this->load->library('upload',$config);
-        for ($i=1; $i <=5 ; $i++) { 
-            if(!empty($_FILES['filefoto'.$i]['name'])){
-                if(!$this->upload->do_upload('filefoto'.$i))
-                    $this->upload->display_errors();  
-                else
-                    echo "Foto berhasil di upload";
-            }
-        }
+        
         
         // redirect('admin/dokumentasi' , 'refresh');
     }

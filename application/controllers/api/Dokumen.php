@@ -16,7 +16,7 @@ class Dokumen extends REST_Controller
         $this->load->library('upload');
     }
 
-    public function index_get()
+    public function index_get($id_dokumen)
     {
         $id_dokumen = $this->get('id_dokumen');
         if ($id_dokumen === null) {
@@ -75,10 +75,37 @@ class Dokumen extends REST_Controller
             'id_kategori' => $id_kategori,
             'nama_file' => $image_path,
             'judul' => $judul,
-            'deskripsi' => $deskripsi,
-
+            'deskripsi' => $deskripsi
         );
-        if ($this->doku->createDokumen($data_order) > 0) {
+        $insert = $this->doku->createDokumen($data_order);
+        $insertId_dokumen = $this->db->insert_id();
+        $this->db->reset_query();
+        $config['upload_path'] = './upload/';
+        $config['allowed_types'] = 'png|gif|jpg|jpeg';
+        $config['encrypt_name'] = TRUE;
+        $this->upload->initialize($config);
+        $jml_foto = count($_FILES['foto']['name']);
+        for($i = 0; $i < $jml_foto; $i++)
+        {
+            if (!empty($_FILES['foto']['name'][$i])) {
+                
+                $_FILES['file']['name'] = $_FILES['foto']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['foto']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['foto']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['foto']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['foto']['size'][$i];
+
+                if ($this->upload->do_upload('file')) {
+                    $uploadData = $this->upload->data();
+                    $data = array(
+                        'id_dokumen' => $insertId_dokumen,
+                        'foto' => $uploadData['file_name']);
+                        $this->db->insert('tbl_berkas',$data);
+                }
+                
+            }
+        }
+        if ($insert > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'Dokumentasi Berhasil Di Unggah'

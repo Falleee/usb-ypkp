@@ -46,7 +46,7 @@
                 Deskripsi
               </th>
               <th style="width: 2%" class="text-center">
-                Prepare
+                Kategori
               </th>
               <th style="width: 30%">
               </th>
@@ -88,7 +88,7 @@
                   <p><?= $doku['deskripsi']; ?></p>
                 </td>
                 <td>
-                  <span class="badge badge-success">Success</span>
+                  <span class="badge badge-success"><?= $doku['nama_kategori'];?></span>
                 </td>
                 <td class="project-actions text-right">
                   <a class="btn btn-primary btn-sm" href="#">
@@ -141,8 +141,13 @@
                       <input type="text" class="form-control" name="judul" placeholder="Masukan Judul Acara" required>
                     </div>
                     <div class="form-group">
-                      <label class="text-dark">Id Kategori</label>
-                      <input type="text" class="form-control" name="id_kategori" placeholder="Masukan Judul Acara" required>
+                      <label class="text-dark">Kategori</label>
+                      <select class="form-control" name="kategori" >
+                      <?php
+                      foreach ($kategori->result_array() as $ktgr) : ?>
+                        <option value="<?= $ktgr['id_kategori'];?>"><?= $ktgr['kategori'];?></option>
+                        <?php endforeach;?>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile" class="text-dark">Thumbnails</label>
@@ -155,7 +160,7 @@
                     </div>
                     <div class="form-group">
                       <label>Tambahkan Banyak Foto</label>
-                      <input type="file" name="file[]" class="form-control" multiple="">
+                      <input type="file" name="foto[]" class="form-control" multiple="">
                     </div>
                     <div class="form-group">
                       <label class="text-dark">Deskripsi Acara</label>

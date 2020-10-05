@@ -11,15 +11,33 @@ class Home extends CI_Controller {
     }
 
     public function index()    
-    {
-        $data['dokumen'] = $this->doku->getDokumen();   
+    { 
+        $data['dokumen'] = $this->db->get('dokumen');   
         $this->load->view('v_home',$data);
     }
-    public function detail($id = null)
+    public function detail($id_dokumen)
     {
-        $this->db->where('id',$id);
-        $data['dokumen'] = $this->doku->getDokumen();   
+        $this->db->where('id_dokumen',$id_dokumen);
+        // $data['doku'] = $this->doku->getDokumen($id_dokumen)->row();
+        // $data['dokumen'] = $this->db->get('dokumen');
+        
+        // Mengambil Nama Kategori
+        $this->db->select('dokumen.*, kategori.kategori nama_kategori');        
+        $this->db->where('dokumen.id_dokumen', $id_dokumen);
+        $this->db->from('dokumen');
+        $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
+        $data['doku'] = $this->db->get()->row();
+        $data['kategori'] = $this->db->get('kategori');
+        
+        // $this->db->select('dokumen.* tbl_berkas.foto nama_foto');
+        // $this->db->where('dokumen.id_dokumen', $id_dokumen);
+        // $this->db->from('dokumen');
+        // $this->db->join('tbl_berkas', 'tbl_berkas.id_kategori = dokumen.id_kategori');
+        // $data['tbl_berkas'] = $this->db->get('tbl_berkas');
+        
+        $this->load->view('v_header');
         $this->load->view('v_detail',$data);
+        $this->load->view('v_footer');
     }
 
 }

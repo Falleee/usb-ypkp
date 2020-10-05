@@ -1,18 +1,13 @@
-<?php 
-$this->load->view('v_header');
-?>
 
     <div class="site-section" data-aos="fade">
             <div class="container-fluid">
-            <?php 
-            foreach ($dokumen->result_array() as $doku) : ?>
 
                 <div class="row justify-content-center">
 
                     <div class="col-md-7">
                         <div class="row mb-5">
                             <div class="col-12 ">
-                                <h2 class="site-section-heading text-center">Acara</h2>
+                                <h2 class="site-section-heading text-center"><?php echo $doku->judul;?></h2>
                             </div>
                         </div>
                     </div>
@@ -21,14 +16,14 @@ $this->load->view('v_header');
 
                 <div class="row mb-5">
                     <div class="col-md-7">
-                        <img src="<?php echo base_url(), $doku['nama_file']; ?>" alt="Image" class="img-fluid"> 
+                        <img src="<?php echo base_url().$doku->nama_file; ?>" alt="Image" class="img-fluid">
+                        <button type="button" class="btn btn-light m-2"><?= $doku->nama_kategori;?></button>
                     </div>
                     <div class="col-md-4 ml-auto">
-                        <h3 class="text-dark"><?php echo $doku['judul'];?></h3>
-                        <p><?php echo $doku['deskripsi'];?></p>
+                        <h3 class="text-dark"></h3>
+                        <p><?php echo $doku->deskripsi;?></p>
                     </div>
                 </div>
-                <?php endforeach;?>
                 <!-- Foto Banyak -->
                 <div class="site-section" data-aos="fade">
                     <div class="container-fluid">
@@ -46,7 +41,7 @@ $this->load->view('v_header');
                         </div>
                         <div class="row" id="lightgallery">
                             <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_1.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor doloremque hic excepturi fugit, sunt impedit fuga tempora, ad amet aliquid?</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_1.jpg'?>" alt="IMage" class="img-fluid"></a>
+                                <a href="#"><img src="<?php echo base_url().$doku->nama_file?>" alt="IMage" class="img-fluid"></a>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_2.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam omnis quaerat molestiae, praesentium. Ipsam, reiciendis. Aut molestiae animi earum laudantium.</p>">
                                 <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_2.jpg'?>" alt="IMage" class="img-fluid"></a>
@@ -114,6 +109,3 @@ $this->load->view('v_header');
             </div>
 
         </div>
-   
-<?php
-$this->load->view('v_footer');
