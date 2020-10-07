@@ -19,10 +19,13 @@ class Admin extends CI_Controller {
         $data['title'] = 'Dashboard';
         $data['login'] = $this->db->get_where('login',['no_induk' => 
         $this->session->userdata('no_induk')])->row_array();
-        $this->load->view('admin/header',$data);
-        $this->load->view('admin/sidebar', $data);
+        $data['users'] = $this->db->get('login');
+        $data['countuser'] = $this->usr->totalRows('login');
+        $data['countfile'] = $this->doku->totalRows('dokumen');
+        $this->load->view('admin/_partials/header',$data);
+        $this->load->view('admin/_partials/sidebar', $data);
         $this->load->view('admin/admin');
-        $this->load->view('admin/footer');   
+        $this->load->view('admin/_partials/footer');   
     }
 
     public function dokumentasi()
@@ -37,10 +40,10 @@ class Admin extends CI_Controller {
         $data['dokumen'] = $this->db->get();
         $data['kategori'] = $this->db->get('kategori');
         
-        $this->load->view('admin/header',$data);
-        $this->load->view('admin/sidebar', $data);
-        $this->load->view('admin/dokumentasi',$data);
-        $this->load->view('admin/footer');
+        $this->load->view('admin/_partials/header',$data);
+        $this->load->view('admin/_partials/sidebar', $data);
+        $this->load->view('admin/dokumen/dokumentasi',$data);
+        $this->load->view('admin/_partials/footer');
     }
 
     public function edit_dokumentasi($id_dokumen = null)
@@ -48,10 +51,10 @@ class Admin extends CI_Controller {
         $data['title'] = 'Edit Dokumentasi';
         $data['login'] = $this->db->get_where('login',['no_induk' => 
         $this->session->userdata('no_induk')])->row_array();
-        $this->load->view('admin/header',$data);
-        $this->load->view('admin/sidebar', $data);
-        $this->load->view('admin/edit_dokumentasi',$data);
-        $this->load->view('admin/footer');
+        $this->load->view('admin/_partials/header',$data);
+        $this->load->view('admin/_partials/sidebar', $data);
+        $this->load->view('admin/dokumen/edit_dokumentasi',$data);
+        $this->load->view('admin/_partials/footer');
 
     }
 
@@ -86,14 +89,55 @@ class Admin extends CI_Controller {
                 'judul' => $this->input->post('judul'),
                 'deskripsi' => $this->input->post('deskripsi')   
             );
-            $this->db->insert('dokumen', $data_order);
-            // $insertId_dokumen = $this->db->insert;
+            $insert = $this->doku->createDokumen( $data_order);
+            // Multiple Upload
+            $insertId_dokumen = $this->db->insert_id();
+            $this->db->reset_query();
+            $config['upload_path'] = './upload/';
+            $config['allowed_types'] = 'png|gif|jpg|jpeg';
+            $config['encrypt_name'] = TRUE;
+            $this->upload->initialize($config);
+            $jml_foto = count($_FILES['foto']['name']);
+            for ($i=0; $i < $jml_foto ; $i++) 
+            { 
+                if (!empty($_FILES['foto']['name']['$i'])) {
+                    $_FILES['file']['name'] = $_FILES['foto']['name']['$i'];
+                    $_FILES['file']['type'] = $_FILES['foto']['type']['$i'];
+                    $_FILES['file']['tmp_name'] = $_FILES['foto']['tmp_name']['$i'];
+                    $_FILES['file']['error'] = $_FILES['foto']['error']['$i'];
+                    $_FILES['file']['size'] = $_FILES['foto']['size']['$i'];
+                    
+                    if ($this->upload->do_upload('file')) 
+                    {
+                        $uploadData = $this->upload->data();
+                        $data = array(
+                            'id_dokumen' => $insertId_dokumen,
+                            'foto' =>$uploadData['file_name']);
+                            $this->db->insert('tbl_berkas',$data);
+                    }
+                }
+            }
+            if($insert > 0){
+                $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
+                Berhasil Membuat Acara Baru!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                redirect('admin/dokumentasi' , 'refresh');
+            }else {
+                $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
+                Gagal Upload Acara!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                redirect('admin/dokumentasi','refresh');
+            }
+
             // $this->doku->createDokumen($data_order);
         }
-        // Multiple Upload
         
         
-        // redirect('admin/dokumentasi' , 'refresh');
+        
     }
 
     public function delete($id_dokumen = null)
@@ -101,7 +145,12 @@ class Admin extends CI_Controller {
         $this->db->where('id_dokumen', $id_dokumen);
         $this->db->delete('dokumen');
         // $this->doku->deleteDokumen($id);
-
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Berhasil Menghapus Acara !<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                redirect('admin/dokumentasi','refresh');
         redirect('admin/dokumentasi','refresh');
     }
 
@@ -148,10 +197,10 @@ class Admin extends CI_Controller {
         $data['login'] = $this->db->get_where('login',['no_induk' => 
         $this->session->userdata('no_induk')])->row_array();
         $data['user'] = $this->usr->getUsers();
-        $this->load->view('admin/header',$data);
-        $this->load->view('admin/sidebar', $data);
-        $this->load->view('admin/users', $data);  
-        $this->load->view('admin/footer', $data);
+        $this->load->view('admin/_partials/header',$data);
+        $this->load->view('admin/_partials/sidebar', $data);
+        $this->load->view('admin/users/users', $data);  
+        $this->load->view('admin/_partials/footer', $data);
          
     }
 
@@ -184,8 +233,8 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
             Berhasil Membuat Akun Baru!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
-          </div>');
+            </button>
+            </div>');
             redirect('admin/users');   
         }
     }
@@ -196,10 +245,10 @@ class Admin extends CI_Controller {
         $this->session->userdata('no_induk')])->row_array();
         $this->db->where('no_induk' , $no_induk);
         $data['user'] = $this->usr->getUsers($no_induk);
-        $this->load->view('admin/header',$data);
-        $this->load->view('admin/sidebar', $data);
-        $this->load->view('admin/edit_users', $data);  
-        $this->load->view('admin/footer', $data);
+        $this->load->view('admin/_partials/header',$data);
+        $this->load->view('admin/_partials/sidebar', $data);
+        $this->load->view('admin/users/edit_users', $data);  
+        $this->load->view('admin/_partials/footer', $data);
     }
     public function updateusers($no_induk = null)
     {
@@ -219,6 +268,11 @@ class Admin extends CI_Controller {
     {
         $this->db->where('no_induk', $no_induk);
         $this->db->delete('login');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Berhasil Menghapus Users!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
 
         redirect('admin/users','refresh');
     }

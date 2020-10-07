@@ -10,7 +10,7 @@ class M_dokumen extends CI_Model
         return $this->db->affected_rows();
     }
 
-    public function getDokumen($id_dokumen)
+    public function getDokumen($id_dokumen = null)
     {
         // $result = $this->db->get('dokumen');
         // return $result->result_array();
@@ -25,6 +25,11 @@ class M_dokumen extends CI_Model
     public function deleteDokumen($id_dokumen)
     {
         $this->db->delete('dokumen',$id_dokumen);
+    }
+
+    public function totalRows($table)
+    {
+        return $this->db->count_all_results($table);
     }
 }
 

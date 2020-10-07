@@ -21,6 +21,11 @@ class M_users extends CI_Model {
         $aw = $this->db->insert('login',$data);
         return $aw;
     }
+
+    public function totalRows($table)
+    {
+        return $this->db->count_all_results($table);
+    }
 }
 
 /* End of file ModelName.php */

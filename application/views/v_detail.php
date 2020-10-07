@@ -40,10 +40,13 @@
 
                         </div>
                         <div class="row" id="lightgallery">
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_1.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor doloremque hic excepturi fugit, sunt impedit fuga tempora, ad amet aliquid?</p>">
-                                <a href="#"><img src="<?php echo base_url().$doku->nama_file?>" alt="IMage" class="img-fluid"></a>
+                            <?php
+                            foreach ($berkas->result_array() as $brks) : ?>
+                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url('/upload/').$brks['foto'];?>" data-sub-html="<h4><?php echo $doku->judul;?></h4><p><?php echo $doku->deskripsi;?></p>">
+                                <a href="#"><img src="<?php echo base_url('/upload/').$brks['foto'];?>" alt="IMage" class="img-fluid"></a>
                             </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_2.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam omnis quaerat molestiae, praesentium. Ipsam, reiciendis. Aut molestiae animi earum laudantium.</p>">
+                            <?php endforeach;?>
+                            <!-- <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_2.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam omnis quaerat molestiae, praesentium. Ipsam, reiciendis. Aut molestiae animi earum laudantium.</p>">
                                 <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_2.jpg'?>" alt="IMage" class="img-fluid"></a>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_3.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis, dolorum illo temporibus culpa eaque dolore rerum quod voluptate doloribus.</p>">
@@ -64,7 +67,7 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_8.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam vitae sed cum mollitia itaque soluta laboriosam eaque sit ratione, aliquid.</p>">
                                 <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_8.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

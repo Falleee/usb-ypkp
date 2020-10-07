@@ -2,6 +2,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
+  <?= $this->session->flashdata('message'); ?>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">

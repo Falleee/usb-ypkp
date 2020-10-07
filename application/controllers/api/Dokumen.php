@@ -16,11 +16,11 @@ class Dokumen extends REST_Controller
         $this->load->library('upload');
     }
 
-    public function index_get($id_dokumen)
+    public function index_get()
     {
         $id_dokumen = $this->get('id_dokumen');
         if ($id_dokumen === null) {
-            $doku = $this->doku->getDokumen($id_dokumen);
+            $doku = $this->doku->getDokumen();
         }else {
             $doku = $this->doku->getDokumen($id_dokumen);
         }

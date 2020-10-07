@@ -40,9 +40,9 @@ class Login extends CI_Controller {
                 ];
                 $this->session->set_userdata($data);
                 if($login['role'] == 'admin'){
-                    redirect('member');
-                }else{
                     redirect('admin');
+                }else{
+                    redirect('member');
                 }
             }else{
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah!</div>');

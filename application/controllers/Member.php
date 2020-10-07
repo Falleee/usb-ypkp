@@ -9,10 +9,10 @@ class Member extends CI_Controller {
         $data['title'] = 'Member';
         $data['login'] = $this->db->get_where('login',['no_induk' => 
         $this->session->userdata('no_induk')])->row_array();
-        $this->load->view('admin/header',$data);
-        $this->load->view('admin/sidebar', $data);
+        $this->load->view('admin/_partials/header',$data);
+        $this->load->view('admin/_partials/sidebar', $data);
         $this->load->view('admin/member');
-        $this->load->view('admin/footer');   
+        $this->load->view('admin/_partials/footer');   
     }
 
 }

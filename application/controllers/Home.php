@@ -12,8 +12,10 @@ class Home extends CI_Controller {
 
     public function index()    
     { 
-        $data['dokumen'] = $this->db->get('dokumen');   
+        $data['dokumen'] = $this->db->get('dokumen');
+        $this->load->view('_partials/v_header');
         $this->load->view('v_home',$data);
+        $this->load->view('_partials/v_footer');
     }
     public function detail($id_dokumen)
     {
@@ -28,6 +30,8 @@ class Home extends CI_Controller {
         $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
         $data['doku'] = $this->db->get()->row();
         $data['kategori'] = $this->db->get('kategori');
+
+        $data['berkas'] = $this->db->get('tbl_berkas',$id_dokumen);
         
         // $this->db->select('dokumen.* tbl_berkas.foto nama_foto');
         // $this->db->where('dokumen.id_dokumen', $id_dokumen);
@@ -35,9 +39,9 @@ class Home extends CI_Controller {
         // $this->db->join('tbl_berkas', 'tbl_berkas.id_kategori = dokumen.id_kategori');
         // $data['tbl_berkas'] = $this->db->get('tbl_berkas');
         
-        $this->load->view('v_header');
+        $this->load->view('_partials/v_header');
         $this->load->view('v_detail',$data);
-        $this->load->view('v_footer');
+        $this->load->view('_partials/v_footer');
     }
 
 }

@@ -1,6 +1,4 @@
-<?php
-$this->load->view('v_header');
-?>
+<!-- Main Content -->
 
 <!-- caraosel -->
 <div id="carouselExampleCaptions" class="carousel slide mb-4" data-ride="carousel">
@@ -145,5 +143,3 @@ $this->load->view('v_header');
   </div>
 </section>
 
-<?php
-$this->load->view('v_footer');
