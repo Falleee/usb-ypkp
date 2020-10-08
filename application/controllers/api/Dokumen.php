@@ -20,9 +20,9 @@ class Dokumen extends REST_Controller
     {
         $id_dokumen = $this->get('id_dokumen');
         if ($id_dokumen === null) {
-            $doku = $this->doku->getDokumen();
+            $doku = $this->doku->getDokumenapi();
         }else {
-            $doku = $this->doku->getDokumen($id_dokumen);
+            $doku = $this->doku->getDokumenapi($id_dokumen);
         }
 
         if ($doku) {

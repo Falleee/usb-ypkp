@@ -61,7 +61,7 @@
           </div>
         </div>
       <?php endforeach; ?>
-      <div class="col-lg-4">
+      <!-- <div class="col-lg-4">
         <div class="image-wrap-2">
           <div class="image-info">
             <h2 class="mb-3">Portrait</h2>
@@ -138,7 +138,7 @@
           </div>
           <img src="<?php echo base_url() . 'assets/images/img_4.jpg' ?>" alt="Image" class="img-fluid">
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

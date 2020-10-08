@@ -22,7 +22,7 @@ class Home extends CI_Controller {
         $this->db->where('id_dokumen',$id_dokumen);
         // $data['doku'] = $this->doku->getDokumen($id_dokumen)->row();
         // $data['dokumen'] = $this->db->get('dokumen');
-        
+        $data['berkas'] = $this->db->get('tbl_berkas',$id_dokumen);
         // Mengambil Nama Kategori
         $this->db->select('dokumen.*, kategori.kategori nama_kategori');        
         $this->db->where('dokumen.id_dokumen', $id_dokumen);
@@ -30,8 +30,7 @@ class Home extends CI_Controller {
         $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
         $data['doku'] = $this->db->get()->row();
         $data['kategori'] = $this->db->get('kategori');
-
-        $data['berkas'] = $this->db->get('tbl_berkas',$id_dokumen);
+        
         
         // $this->db->select('dokumen.* tbl_berkas.foto nama_foto');
         // $this->db->where('dokumen.id_dokumen', $id_dokumen);

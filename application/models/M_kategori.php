@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_kategori extends CI_Model 
 {
-    public function getKategori($id = null)
+    public function getKategori($id_kategori = null)
     {
-        if($id === null){
+        if($id_kategori === null){
             return $this->db->get('kategori')->result_array();
         }else{
-            return $this->db->get_where('kategori',['id'=>$id])->result_array();    
+            return $this->db->get_where('kategori',['id_kategori'=>$id_kategori])->result_array();    
         }
     }
 

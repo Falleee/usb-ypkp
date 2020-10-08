@@ -18,11 +18,11 @@ class Kategori extends REST_Controller {
 
     public function index_get()
     {
-        $id = $this->get('id');
-        if ($id === null) {
+        $id_kategori = $this->get('id_kategori');
+        if ($id_kategori === null) {
             $kategori = $this->kategori->getKategori();
         }else {
-            $kategori = $this->kategori->getKategori($id);
+            $kategori = $this->kategori->getKategori($id_kategori);
         }
 
         if ($kategori) {
