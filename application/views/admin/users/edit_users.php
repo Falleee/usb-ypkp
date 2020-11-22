@@ -9,7 +9,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('') ?>">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('user') ?>">User</a></li>
             <li class="breadcrumb-item active"><?= $title; ?></li>
           </ol>
         </div>
@@ -26,32 +27,38 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit User</h3>
+              <a href="<?php echo base_url('user/') ?>" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <?php
-            foreach ($user->result_array() as $usr) : ?>
-            <form action="<?php echo base_url('admin/updateusers/') ?><?php echo $usr['no_induk']; ?>" method="post">
+
+            <form action="<?php echo base_url('user/update/') ?><?php echo $user->no_induk; ?>" method="post">
               <div class="card-body">
                 <div class="form-group">
                   <label>No Induk</label>
-                  <input type="text" name="no_induk" value="<?= $usr['no_induk'];?>" class="form-control">
+                  <input type="text" name="no_induk" value="<?= $user->no_induk; ?>" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                   <label>Nama</label>
-                  <input type="text" name="nama" value="<?= $usr['nama'];?>" class="form-control" required>
+                  <input type="text" name="nama" value="<?= $user->nama; ?>" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label>Role</label>
-                  <input type="text" name="role" value="<?= $usr['role'];?>" class="form-control" required>
+                  <label>Status</label>
+                  <select name="role" id="inputStatus" class="form-control custom-select">
+                  <?php if (isset($user)): ?>
+                    <option value="1" <?php if($user->role=='1') echo "selected"?>>Admin</option>
+                    <option value="0" <?php if($user->role=='0') echo "selected"?>>Member</option>
+                    <?php else: ?>
+                    <option>Admin</option>
+                    <option>Member</option>
+                    <?php endif ?>
+                  </select>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
-            <?php endforeach;?>
           </div>
         </div>
       </div>

@@ -1,84 +1,112 @@
-
-    <div class="site-section" data-aos="fade">
+<div class="site-section" data-aos="fade">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="row mb-5">
+                    <div class="col-12 ">
+                        <h2 class="site-section-heading text-center"><?php echo $doku->judul; ?></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-7">
+                <img src="<?php echo base_url() . $doku->nama_file; ?>" alt="Image" class="img-fluid">
+                <button type="button" class="btn btn-light m-2"><?= $doku->nama_kategori; ?></button>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <h3 class="text-dark"></h3>
+                <p><?php echo $doku->deskripsi; ?></p>
+            </div>
+        </div>
+        <!-- Foto Banyak -->
+        <div class="site-section" data-aos="fade">
             <div class="container-fluid">
-
                 <div class="row justify-content-center">
-
                     <div class="col-md-7">
                         <div class="row mb-5">
                             <div class="col-12 ">
-                                <h2 class="site-section-heading text-center"><?php echo $doku->judul;?></h2>
+                                <h2 class="site-section-heading text-center">Berkas Lainya</h2>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-                <div class="row mb-5">
-                    <div class="col-md-7">
-                        <img src="<?php echo base_url().$doku->nama_file; ?>" alt="Image" class="img-fluid">
-                        <button type="button" class="btn btn-light m-2"><?= $doku->nama_kategori;?></button>
-                    </div>
-                    <div class="col-md-4 ml-auto">
-                        <h3 class="text-dark"></h3>
-                        <p><?php echo $doku->deskripsi;?></p>
-                    </div>
-                </div>
-                <!-- Foto Banyak -->
-                <div class="site-section" data-aos="fade">
-                    <div class="container-fluid">
-
-                        <div class="row justify-content-center">
-
-                            <div class="col-md-7">
-                                <div class="row mb-5">
-                                    <div class="col-12 ">
-                                        <h2 class="site-section-heading text-center">Foto Lainya</h2>
-                                    </div>
-                                </div>
+                <div class="row" id="lightgallery">
+                    <?php $no = 0;
+                    foreach ($file as $brks) : $no++ ?>
+                        <?php if ($brks->extension == 'jpg' || $brks->extension == 'png' || $brks->extension == 'gif' || $brks->extension == 'jpeg') : ?>
+                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url('/upload/') . $brks->foto; ?>" data-sub-html="<h4><?php echo $doku->judul; ?></h4><p><?php echo $doku->deskripsi; ?></p>">
+                                <a href="#"><img src="<?php echo base_url('/upload/') . $brks->foto; ?>" alt="IMage" class="img-fluid"></a>
                             </div>
+                        <?php endif ?>
+                    <?php endforeach; ?>
+                </div>
+                <?php if (isset($file)) : ?>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <table class="table table-striped projects">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 1%">
+                                                No
+                                            </th>
+                                            <th style="width: 20%">
+                                                Nama Berkas
+                                            </th>
+                                            <th style="width: 10%">
+                                            </th>
+                                            <th>
+                                            </th>
+                                            <th style="width: 8%">
+                                            </th>
+                                            <th style="width: 40%">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <?php $no = 0;
+                                    foreach ($file as $brks) :
+                                        $no++ ?>
+                                        <?php if ($brks->extension == 'pdf'  || $brks->extension == 'xlsx' || $brks->extension == 'doc' || $brks->extension == 'zip' || $brks->extension == 'rar') : ?>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <?= $no ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $brks->foto ?>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td class="project-actions text-right">
+                                                        <a href="<?= base_url('upload/') . $brks->foto ?>" target="_blank" src="<?= base_url('upload/') . $brks->foto ?>" class="btn btn-info btn-sm">
+                                                            <i class="fas fa-download">
+                                                            </i>
+                                                            Download
+                                                        </a>
 
+                                                    </td>
+                                                </tr>
+                                            <?php endif ?>
+                                        <?php endforeach ?>
+                                            </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="row" id="lightgallery">
-                            <?php
-                            foreach ($berkas->result_array() as $brks) : ?>
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url('/upload/').$brks['foto'];?>" data-sub-html="<h4><?php echo $doku->judul;?></h4><p><?php echo $doku->deskripsi;?></p>">
-                                <a href="#"><img src="<?php echo base_url('/upload/').$brks['foto'];?>" alt="IMage" class="img-fluid"></a>
-                            </div>
-                            <?php endforeach;?>
-                            <!-- <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_2.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam omnis quaerat molestiae, praesentium. Ipsam, reiciendis. Aut molestiae animi earum laudantium.</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_2.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_3.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis, dolorum illo temporibus culpa eaque dolore rerum quod voluptate doloribus.</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_3.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_4.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim perferendis quae iusto omnis praesentium labore tempore eligendi quo corporis sapiente.</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_4.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_5.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, voluptatum voluptate tempore aliquam, dolorem distinctio. In quas maiores tenetur sequi.</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_5.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_6.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum cum culpa blanditiis illum, voluptatum iusto quisquam mollitia debitis quaerat maiores?</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_6.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div>
-
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_7.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores similique impedit possimus, laboriosam enim at placeat nihil voluptatibus voluptate hic!</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_7.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url().'assets/images/big-images/nature_big_8.jpg'?>" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam vitae sed cum mollitia itaque soluta laboriosam eaque sit ratione, aliquid.</p>">
-                                <a href="#"><img src="<?php echo base_url().'assets/images/nature_small_8.jpg'?>" alt="IMage" class="img-fluid"></a>
-                            </div> -->
-                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
+            </div>
+            <!-- Akhir Foto Banyak -->
 
-                <!-- Akhir Foto Banyak -->
-
-                <div class="section">
+            <div class="section">
                 <h2 class="site-section-heading text-center">Dari Kita Untuk Kampus</h2>
                 <div class="row site-section">
                     <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
-                        <img src="<?php echo base_url().'assets/empunya/opal1.jpg'?>" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
+                        <img src="<?php echo base_url() . 'assets/empunya/opal1.jpg' ?>" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
                         <h2 class="text-white font-weight-light mb-4">Rizki & Ridho</h2>
                         <p class="mb-4">Ikan Hiu Makan Tahu, Gehu</p>
                         <p>
@@ -88,7 +116,7 @@
                         </p>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
-                        <img src="<?php echo base_url().'assets/empunya/profill.jpg'?>" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
+                        <img src="<?php echo base_url() . 'assets/empunya/profill.jpg' ?>" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
                         <h2 class="text-white font-weight-light mb-4">Nicholas Saputra</h2>
                         <p class="mb-4">Seni Adalah Ledakan</p>
                         <p>
@@ -98,7 +126,7 @@
                         </p>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
-                        <img src="<?php echo base_url().'assets/empunya/ican.jpeg'?>" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
+                        <img src="<?php echo base_url() . 'assets/empunya/ican.jpeg' ?>" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
                         <h2 class="text-white font-weight-light mb-4">Ade Londok</h2>
                         <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur ab quas facilis obcaecati non ea, est odit repellat distinctio incidunt, quia aliquam eveniet quod deleniti impedit sapiente atque tenetur porro?</p>
                         <p>
@@ -108,7 +136,7 @@
                         </p>
                     </div>
                 </div>
-                </div>
             </div>
-
         </div>
+    </div>
+</div>

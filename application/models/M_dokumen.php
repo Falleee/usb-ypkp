@@ -43,6 +43,23 @@ class M_dokumen extends CI_Model
     {
         return $this->db->count_all_results($table);
     }
+
+    public function getDoku()
+    {
+        $result = $this->db->get('dokumen');
+        return $result;
+    }
+
+    public function getDetail($id_dokumen)
+    {
+        $this->db->where('id_dokumen',$id_dokumen);
+        $this->db->select('dokumen.*, kategori.kategori nama_kategori');
+        $this->db->where('dokumen.id_dokumen',$id_dokumen);
+        $this->db->from('dokumen');
+        $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
+        $data = $this->db->get();
+        return $data;
+    }
 }
 
 /* End of file ModelName.php */

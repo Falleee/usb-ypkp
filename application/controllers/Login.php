@@ -11,7 +11,6 @@ class Login extends CI_Controller {
         $this->load->library('form_validation');
     }
     
-
     public function index()
     {
         $this->form_validation->set_rules('no_induk','Nomer Induk','trim|required');
@@ -36,10 +35,11 @@ class Login extends CI_Controller {
             if (password_verify($password, $login['password'])) {
                 $data = [
                     'no_induk' => $login['no_induk'],
-                    'role' => $login['role']
+                    'role' => $login['role'],
+                    'islogin' => TRUE
                 ];
                 $this->session->set_userdata($data);
-                if($login['role'] == 'admin'){
+                if($login['role'] == '1'){
                     redirect('admin');
                 }else{
                     redirect('member');
@@ -57,8 +57,9 @@ class Login extends CI_Controller {
     public function logout()
     {
         $this->session->unset_userdata('no_induk');
+        $this->session->sess_destroy();
+        redirect('login');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Logout!</div>');
-            redirect('login');
 
     }
 
