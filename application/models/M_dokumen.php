@@ -57,7 +57,7 @@ class M_dokumen extends CI_Model
         $this->db->where('dokumen.id_dokumen',$id_dokumen);
         $this->db->from('dokumen');
         $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
-        $data = $this->db->get();
+        $data = $this->db->get()->row();
         return $data;
     }
 }

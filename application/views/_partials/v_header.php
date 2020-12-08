@@ -56,6 +56,7 @@
             <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
                 <li class="<?= $this->uri->segment(1) == '' ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>">Home</a></li>
+                <li class="<?= $this->uri->segment(1) == '' ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin">Admin</a></li>
               </ul>
             </nav>
           </div>
@@ -63,6 +64,7 @@
           <div class="col-6 col-xl-2 text-right" data-aos="fade-down">
             <div class="d-none d-xl-inline-block">
               <ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+
                 <li>
                   <a href="#" class="pl-0 pr-3"><span class="icon-facebook text-dark"></span></a>
                 </li>
@@ -71,9 +73,6 @@
                 </li>
                 <li>
                   <a href="#" class="pl-3 pr-3"><span class="icon-instagram text-dark"></span></a>
-                </li>
-                <li>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-youtube-play text-dark"></span></a>
                 </li>
               </ul>
             </div>

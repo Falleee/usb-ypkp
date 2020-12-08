@@ -68,13 +68,13 @@
                 <td>
                   <ul class="list-inline">
                     <li class="list-inline-item">
-                      <p><?= $doku['ketua']?></p>
+                      <p><?= $doku['ketua'] ?></p>
                     </li>
                   </ul>
                 </td>
                 <td>
                   <!-- <p><?php echo substr($doku['deskripsi'], 0, 40); ?></p> -->
-                  <p><?= $doku['tanggal']?></p>
+                  <p><?= $doku['tanggal'] ?></p>
                 </td>
                 <td>
                   <span class="badge badge-success"><?= $doku['nama_kategori']; ?></span>
@@ -86,7 +86,9 @@
                   <div class="dropdown-menu" role="menu">
                     <a class="dropdown-item" href="<?= base_url('dokumentasi/detail/') ?><?= $doku['id_dokumen']; ?>"><i class="fas fa-folder"></i> Detail</a>
                     <a class="dropdown-item" href="<?= base_url('dokumentasi/edit/') ?><?= $doku['id_dokumen']; ?>"><i class="fas fa-pencil-alt"></i> Edit</a>
-                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-delete<?= $doku['id_dokumen']; ?>"><i class="fas fa-trash"></i> Delete</button>
+                    <?php if ($login['role'] == 1) : ?>
+                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-delete<?= $doku['id_dokumen']; ?>"><i class="fas fa-trash"></i> Delete</button>
+                    <?php endif ?>
                   </div>
                 </td>
               </tr>

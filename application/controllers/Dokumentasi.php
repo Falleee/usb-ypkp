@@ -47,7 +47,7 @@ class Dokumentasi extends CI_Controller
         $this->session->userdata('no_induk')])->row_array();
         $id = $this->uri->segment(3);
         $this->db->where('id_dokumen', $id);
-        $data['doku'] = $this->doku->getDetail($id)->row();
+        $data['doku'] = $this->doku->getDetail($id);
         $data['berkas'] = $this->db->get('tbl_berkas')->result();
         $this->db->reset_query();
         $data['kategori'] = $this->db->get('kategori');
@@ -62,10 +62,11 @@ class Dokumentasi extends CI_Controller
         $data['title'] = 'Detail Dokumentasi';
         $data['login'] = $this->db->get_where('login', ['no_induk' =>
         $this->session->userdata('no_induk')])->row_array();
+        
         $this->db->where('id_dokumen', $id_dokumen);
         $data['berkas'] = $this->db->get('tbl_berkas')->result();
         // Untuk Mengambil data dokumen
-        $data['doku'] = $this->doku->getDetail($id_dokumen)->row();
+        $data['doku'] = $this->doku->getDetail($id_dokumen);
         // View
         $this->load->view('admin/_partials/header', $data);
         $this->load->view('admin/_partials/sidebar', $data);
@@ -118,7 +119,7 @@ class Dokumentasi extends CI_Controller
             'judul' => $this->input->post('judul'),
             'tema' => $this->input->post('tema'),
             'ketua' => $this->input->post('ketua'),
-            'tanggal' => $this->input->post('tanggal'),
+            'tanggal' => date_format(date_create($this->input->post('tanggal')),'Y-m-d'),
             'deskripsi' => $this->input->post('deskripsi')
         );
         $insert = $this->doku->createDokumen($data_order);
@@ -198,7 +199,7 @@ class Dokumentasi extends CI_Controller
             'id_kategori' => $this->input->post('kategori'),
             'tema' => $this->input->post('tema'),
             'ketua' => $this->input->post('ketua'),
-            'tanggal' => $this->input->post('tanggal'),
+            'tanggal' => date_format(date_create($this->input->post('tanggal')),'Y-m-d'),
             'judul' => $this->input->post('judul'),
             'deskripsi' => $this->input->post('deskripsi')
         );
@@ -238,7 +239,6 @@ class Dokumentasi extends CI_Controller
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            // $this->session->set_flashdata('message',$data);
             redirect('dokumentasi', 'refresh');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
@@ -246,8 +246,6 @@ class Dokumentasi extends CI_Controller
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            // $this->session->set_flashdata('message',$data);
-            // redirect('admin/dokumentasi', 'refresh');
             $this->index();
         }
     }

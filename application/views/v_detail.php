@@ -4,7 +4,7 @@
             <div class="col-md-7">
                 <div class="row mb-5">
                     <div class="col-12 ">
-                        <h2 class="site-section-heading text-center"><?php echo $doku->judul; ?></h2>
+                        <h2 class="site-section-heading text-center"><?= $doku->judul ?></h2>
                     </div>
                 </div>
             </div>
@@ -12,7 +12,7 @@
         <div class="row mb-5">
             <div class="col-md-7">
                 <img src="<?php echo base_url() . $doku->nama_file; ?>" alt="Image" class="img-fluid">
-                <button type="button" class="btn btn-light m-2"><?= $doku->nama_kategori; ?></button>
+                Tema:<button type="button" class="btn btn-light m-2"><?= $doku->nama_kategori; ?></button>
             </div>
             <div class="col-md-4 ml-auto">
                 <h3 class="text-dark"></h3>

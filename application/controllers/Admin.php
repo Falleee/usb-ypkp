@@ -28,7 +28,7 @@ class Admin extends CI_Controller
         $data['countfile'] = $this->doku->totalRows('dokumen');
         $this->load->view('admin/_partials/header', $data);
         $this->load->view('admin/_partials/sidebar', $data);
-        $this->load->view('admin/admin');
+        $this->load->view('admin/admin',$data);
         $this->load->view('admin/_partials/footer');
     }
 

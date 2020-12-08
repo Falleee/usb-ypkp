@@ -15,7 +15,7 @@
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 <a href="https://usbypkp.ac.id">Naufal</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="https://usbypkp.ac.id">USB YPKP</a>.</strong> All rights reserved.
   </footer>
   </div>
   <!-- ./wrapper -->
@@ -60,7 +60,7 @@
 
       //Date range picker
       $('#reservationdate').datetimepicker({
-        format: 'Y-M-d'
+        format: 'D-M-YYYY'
       });
     })
   </script>
@@ -70,7 +70,7 @@
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
