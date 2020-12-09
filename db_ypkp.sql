@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 05 Okt 2020 pada 05.36
+-- Waktu pembuatan: 09 Des 2020 pada 13.26
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -32,6 +32,9 @@ CREATE TABLE `dokumen` (
   `id_kategori` int(11) DEFAULT NULL,
   `nama_file` varchar(255) DEFAULT NULL,
   `judul` varchar(255) DEFAULT NULL,
+  `tema` varchar(50) NOT NULL,
+  `ketua` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL,
   `deskripsi` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -39,11 +42,12 @@ CREATE TABLE `dokumen` (
 -- Dumping data untuk tabel `dokumen`
 --
 
-INSERT INTO `dokumen` (`id_dokumen`, `id_kategori`, `nama_file`, `judul`, `deskripsi`) VALUES
-(25, 6, 'upload/59fdf099ebea959fc72d0e91991e5d3f.jpg', 'inimah lancar dong', 'bersama seluruh element kampus pada 2022'),
-(28, 2, 'upload/1020000cf65978cd384a2214b6509eab.jpg', 'Pembelian Laptop Dari yayasan', 'bersama seluruh element kampus pada 2022'),
-(52, 2, 'upload/071323798dafbbe6b79d4a42271f8f1b.png', 'aw', 'awaw'),
-(53, 2, 'upload/675b9b20e8706cc22b86ac793b11ce48.png', 'admin', 'admin\r\n');
+INSERT INTO `dokumen` (`id_dokumen`, `id_kategori`, `nama_file`, `judul`, `tema`, `ketua`, `tanggal`, `deskripsi`) VALUES
+(120, 5, 'upload/e6c97288169cca8f012b9ae8587f41e9.png', 'Mengaji', 'Data Mining', 'Rifa', '0000-00-00', 'asd'),
+(121, 3, 'upload/e29475b82e70aad0de7996bcff8ca2b8.png', 'asda', 'asd', 'asd', '2020-12-04', 'asd'),
+(123, 3, 'upload/8443daf1d5528402c86a02734600e2fb.png', 'asdadadad', 'adsssssssssssssssssssss', 'asdaadsasdsad', '2020-12-04', 'asdadadssad'),
+(124, 3, 'upload/c1cca5f6fa6ec6690c798d981faf6fa5.png', '1', 'a', 'a', '2021-01-05', 'a'),
+(125, 3, 'upload/dca524bb04becc38fc6da04064f6563a.jpg', 'a', 'a', 'a', '2021-01-01', 'a');
 
 -- --------------------------------------------------------
 
@@ -61,9 +65,8 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `kategori`) VALUES
-(0, 'admin'),
-(1, 'Data Mining'),
-(2, 'Machine Learning');
+(3, 'Seminar'),
+(5, 'Workshop');
 
 -- --------------------------------------------------------
 
@@ -83,9 +86,10 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`no_induk`, `nama`, `password`, `role`) VALUES
-('087882263838', 'naufal', '$2y$10$WgVzRZjL/x1AsYdpFyRiyeVE2/RsQ6/RsdQLwdvAHv/g4LCOwDsb.', 'admin'),
-('123', 'admin@example.com', '$2y$10$PHaRJKZ7TV2.8P3up/HOPOM8W/n83ENq3TBMA9KfAmAOF3x483C4e', 'admin'),
-('2113171036', 'Naufal Hidayah Surya', '$2y$10$NgsqZ1BQ/4B5mcv01300AODqhbBacmPRX8/wDFcHYWxLoUK8uBn.K', 'admin');
+('123', 'admin@example.com', '$2y$10$iVxiaNCExXY90DNXekLdGO0MyMxOeDJbRb7BVX2IP4jPp42gUAiBu', '1'),
+('12345', 'asep', '$2y$10$OK6Tt9XvP3eXT2E91EHgwuET1lXyJpPwuk0n77ecLlCxys5PJ7/GK', '0'),
+('2113171036', 'Naufal Hidayah Surya', '$2y$10$NgsqZ1BQ/4B5mcv01300AODqhbBacmPRX8/wDFcHYWxLoUK8uBn.K', '0'),
+('40162', 'pizza@gmail.com', '$2y$10$8ADbrkuPsGDjVuJ0Gp95xewRR8/bPH7B.5JJqnzh10J4SuxElgF/6', '0');
 
 -- --------------------------------------------------------
 
@@ -96,49 +100,48 @@ INSERT INTO `login` (`no_induk`, `nama`, `password`, `role`) VALUES
 CREATE TABLE `tbl_berkas` (
   `id` int(11) NOT NULL,
   `id_dokumen` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `extension` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_berkas`
+--
+
+INSERT INTO `tbl_berkas` (`id`, `id_dokumen`, `foto`, `extension`) VALUES
+(89, 113, '690e0fbc67c12d084ba7559bc371c569.pdf', 'pdf'),
+(90, 113, '6447a0b76f3023b76a0a63dea57dba7b.xlsx', 'xlsx'),
+(98, 116, '8f1ef7f02c41939c62f9669a588e3a09.jpg', 'jpg'),
+(99, 116, 'CONTOH.xlsx', 'xlsx'),
+(100, 116, 'email.xlsx', 'xlsx'),
+(104, 116, 'bisa.png', 'png'),
+(105, 119, 'acaratambah.png', 'png'),
+(111, 122, '230f423b24020b78889d99cfc15eafa8.jpg', ''),
+(112, 122, '01e983f1d9a3c698b0cbaf6b8a8b2225.jpg', ''),
+(113, 122, '116a567041b812144e574ad4201e65c5.jpg', ''),
+(114, 122, 'cb4a43cda122b38373d3b52424771aa9.jpg', ''),
+(115, 122, 'fd824343f4a6e8e69a762e76add7c563.jpg', ''),
+(116, 5, 'e2a5890b2e25bdaec10a225c5684974b.jpg', 'jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_slider`
+--
+
+CREATE TABLE `tbl_slider` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Struktur dari tabel `user_menu`
+-- Dumping data untuk tabel `tbl_slider`
 --
 
-CREATE TABLE `user_menu` (
-  `id` int(11) NOT NULL,
-  `menu` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `user_menu`
---
-
-INSERT INTO `user_menu` (`id`, `menu`) VALUES
-(1, 'Admin'),
-(2, 'User');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `user_sub_menu`
---
-
-CREATE TABLE `user_sub_menu` (
-  `id` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `title` varchar(128) NOT NULL,
-  `url` varchar(128) NOT NULL,
-  `icon` varchar(128) NOT NULL,
-  `is_active` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `user_sub_menu`
---
-
-INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
-(1, 1, 'Dashboard', 'admin', 'fas fa-tachometer-alt', 1);
+INSERT INTO `tbl_slider` (`id`, `judul`, `deskripsi`, `file`) VALUES
+(7, 'Universitas Sangga Buana Ypkp', 'Universitas Sangga Buana Ypkp', 'upload/36a79f11ee9ffdcdd9d1e1cb427a7a68.jpg');
 
 --
 -- Indexes for dumped tables
@@ -169,15 +172,9 @@ ALTER TABLE `tbl_berkas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_menu`
+-- Indeks untuk tabel `tbl_slider`
 --
-ALTER TABLE `user_menu`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `user_sub_menu`
---
-ALTER TABLE `user_sub_menu`
+ALTER TABLE `tbl_slider`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -188,25 +185,25 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT untuk tabel `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_berkas`
 --
 ALTER TABLE `tbl_berkas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
--- AUTO_INCREMENT untuk tabel `user_menu`
+-- AUTO_INCREMENT untuk tabel `tbl_slider`
 --
-ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `user_sub_menu`
---
-ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `tbl_slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
