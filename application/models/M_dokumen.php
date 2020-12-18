@@ -1,8 +1,8 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_dokumen extends CI_Model 
+class M_dokumen extends CI_Model
 {
     public function createDokumen($data_order)
     {
@@ -14,29 +14,35 @@ class M_dokumen extends CI_Model
     {
         // $result = $this->db->get('dokumen');
         // return $result->result_array();
-        
-        if($id_dokumen === null){
+
+        if ($id_dokumen === null) {
             return $this->db->get('dokumen')->result_array();
-        }else{
-            return $this->db->get_where('dokumen',['id_dokumen'=>$id_dokumen]);    
+        } else {
+            return $this->db->get_where('dokumen', ['id_dokumen' => $id_dokumen]);
         }
     }
 
     public function getDokumenapi($id_dokumen = null)
     {
-        // $result = $this->db->get('dokumen');
-        // return $result->result_array();
-        
-        if($id_dokumen === null){
+        if ($id_dokumen == null) {
             return $this->db->get('dokumen')->result_array();
-        }else{
-            return $this->db->get_where('dokumen',['id_dokumen'=>$id_dokumen])->result_array();    
+        } else {
+            $this->db->where('id_dokumen',$id_dokumen);
+            $query = $this->db->get('dokumen')->row_array();
+            // $cek = $this->db->get_where('tbl_berkas',['id_dokumen'=>$id_dokumen]);
+            $this->db->where('id_dokumen',$id_dokumen);
+            $this->db->where('extension','png');
+            $query = $this->db->get('tbl_berkas')->result();
+            // if($cek)
+            // {
+            // }
+            return $query;
         }
     }
 
     public function deleteDokumen($id_dokumen)
     {
-        $this->db->delete('dokumen',$id_dokumen);
+        $this->db->delete('dokumen', $id_dokumen);
     }
 
     public function totalRows($table)
@@ -52,9 +58,9 @@ class M_dokumen extends CI_Model
 
     public function getDetail($id_dokumen)
     {
-        $this->db->where('id_dokumen',$id_dokumen);
+        $this->db->where('id_dokumen', $id_dokumen);
         $this->db->select('dokumen.*, kategori.kategori nama_kategori');
-        $this->db->where('dokumen.id_dokumen',$id_dokumen);
+        $this->db->where('dokumen.id_dokumen', $id_dokumen);
         $this->db->from('dokumen');
         $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
         $data = $this->db->get()->row();

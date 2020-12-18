@@ -31,7 +31,6 @@ class Dokumentasi extends CI_Controller
         $this->db->join('kategori', 'kategori.id_kategori = dokumen.id_kategori');
         $data['dokumen'] = $this->db->get();
         $data['kategori'] = $this->db->get('kategori');
-        $data['berkas'] = $this->db->get('tbl_berkas');
 
         // Ngeload View
         $this->load->view('admin/_partials/header', $data);
@@ -48,6 +47,7 @@ class Dokumentasi extends CI_Controller
         $id = $this->uri->segment(3);
         $this->db->where('id_dokumen', $id);
         $data['doku'] = $this->doku->getDetail($id);
+        $this->db->where('id_dokumen',$id);
         $data['berkas'] = $this->db->get('tbl_berkas')->result();
         $this->db->reset_query();
         $data['kategori'] = $this->db->get('kategori');
