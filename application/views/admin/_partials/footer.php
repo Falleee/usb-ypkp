@@ -43,8 +43,6 @@
   <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.colVis.min.js'?>"></script>
   <!-- date-range-picker -->
   <script src="<?php echo base_url() . 'assets/plugins/daterangepicker/daterangepicker.js' ?>"></script>
-  <!-- SweetAlert2 -->
-  <script src="<?php echo base_url() . 'assets/plugins/sweetalert2/sweetalert2.min.js' ?>"></script>
   <!-- bs-custom-file-input -->
   <script src="<?php echo base_url() . 'assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js' ?>"></script>
   <!-- AdminLTE for demo purposes -->
@@ -73,6 +71,15 @@
         "buttons": ["copy", "csv", "excel", "pdf", "print"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+      $('#example3').DataTable({
         "paging": true,
         "lengthChange": false,
         "searching": false,

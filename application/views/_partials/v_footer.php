@@ -22,7 +22,6 @@
 <script src="<?php echo base_url() . 'assets/js/jquery.stellar.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/jquery.countdown.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/jquery.magnific-popup.min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/bootstrap-datepicker.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/swiper.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/aos.js' ?>"></script>
 

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Waktu pembuatan: 09 Des 2020 pada 13.26
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.2.33
+-- Host: sql213.byetcluster.com
+-- Generation Time: Jan 01, 2021 at 11:30 AM
+-- Server version: 5.6.48-88.0
+-- PHP Version: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_ypkp`
+-- Database: `epiz_27507834_db_ypkp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dokumen`
+-- Table structure for table `dokumen`
 --
 
 CREATE TABLE `dokumen` (
@@ -35,43 +36,40 @@ CREATE TABLE `dokumen` (
   `tema` varchar(50) NOT NULL,
   `ketua` varchar(255) NOT NULL,
   `tanggal` date NOT NULL,
-  `deskripsi` varchar(1000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `deskripsi` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `dokumen`
+-- Dumping data for table `dokumen`
 --
 
 INSERT INTO `dokumen` (`id_dokumen`, `id_kategori`, `nama_file`, `judul`, `tema`, `ketua`, `tanggal`, `deskripsi`) VALUES
-(120, 5, 'upload/e6c97288169cca8f012b9ae8587f41e9.png', 'Mengaji', 'Data Mining', 'Rifa', '0000-00-00', 'asd'),
-(121, 3, 'upload/e29475b82e70aad0de7996bcff8ca2b8.png', 'asda', 'asd', 'asd', '2020-12-04', 'asd'),
-(123, 3, 'upload/8443daf1d5528402c86a02734600e2fb.png', 'asdadadad', 'adsssssssssssssssssssss', 'asdaadsasdsad', '2020-12-04', 'asdadadssad'),
-(124, 3, 'upload/c1cca5f6fa6ec6690c798d981faf6fa5.png', '1', 'a', 'a', '2021-01-05', 'a'),
-(125, 3, 'upload/dca524bb04becc38fc6da04064f6563a.jpg', 'a', 'a', 'a', '2021-01-01', 'a');
+(127, 6, 'upload/67530d0b14496b1e10c6d6b4a2074bf5.jpg', 'Sertifikasi MTCNA', 'Mikrotik', 'Gunawan', '2020-12-18', 'Info pelatihan & ujian sertifikasi Mikrotik (MTCNA):\r\nPeriode Desember 2020\r\n\r\n1. Pelatihan dan Ujian akan dilaksanakan selama 2 hari, Jum\'at-Sabtu (18-19 Desember 2020, pkl. 16.00-20.00 WIB di Ruang Lab. Informatika Gedung E).\r\n2. Pelaksaan ujian akan dilaksanakan hari Sabtu, 19 Desember 2020, mulai pkl. 19.00-selesai di Ruang Lab. Informatika Gedung E.\r\n3. Setiap peserta diwajibkan membawa labtop dan kabel utp yg sdh terpasang rj45 type straight dan panjang minimal 1 meter.\r\n   (Note : Kabel utp rj45 dapat dibeli di borma, kisaran harga 10/15 ribu rupiah, sdh terpasang rj45 dan tinggal digunakan)\r\n4. Untuk peralatan Mikrotik seperti Router Board dan peralatan lainnya sudah disiapkan oleh kampus.\r\n5. MATERI dan BANK SOAL yang akan di bahas di kelas dapat diunduh melalui url berikut: \r\n   https://bit.ly/materimtcnausbypkp\r\n6. Wajib mengisi data peserta ujian melalui url berikut:\r\n   https://bit.ly/daftarmtcnausbypkp\r\n7. Biaya pelatihan dan ujian sebesar Rp. 500.000, dibayarkan melalui prodi Teknik Informatika paling lambat 15 Desember 2020.\r\n\r\nTerima kasih\r\nKoordinator sertifikasi MTCNA\r\nGunawan');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
   `kategori` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `kategori`) VALUES
 (3, 'Seminar'),
-(5, 'Workshop');
+(5, 'Workshop'),
+(6, 'Sertifikasi Internasional');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -79,22 +77,24 @@ CREATE TABLE `login` (
   `nama` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`no_induk`, `nama`, `password`, `role`) VALUES
 ('123', 'admin@example.com', '$2y$10$iVxiaNCExXY90DNXekLdGO0MyMxOeDJbRb7BVX2IP4jPp42gUAiBu', '1'),
 ('12345', 'asep', '$2y$10$OK6Tt9XvP3eXT2E91EHgwuET1lXyJpPwuk0n77ecLlCxys5PJ7/GK', '0'),
 ('2113171036', 'Naufal Hidayah Surya', '$2y$10$NgsqZ1BQ/4B5mcv01300AODqhbBacmPRX8/wDFcHYWxLoUK8uBn.K', '0'),
-('40162', 'pizza@gmail.com', '$2y$10$8ADbrkuPsGDjVuJ0Gp95xewRR8/bPH7B.5JJqnzh10J4SuxElgF/6', '0');
+('40162', 'pizza@gmail.com', '$2y$10$8ADbrkuPsGDjVuJ0Gp95xewRR8/bPH7B.5JJqnzh10J4SuxElgF/6', '0'),
+('666', 'McCartney', '$2y$10$EACqUmgwOS48qtuYY7xjUuuLlHDaHtcEWxbhFQw2vDSsINJrR/03G', '0'),
+('110', 'Abcdefg', '$2y$10$SA0RrTcV7XWFr/Yfsnc.Y.Wj55B7d7UwD5.1ORwgpldPX6pNnErfS', '1');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_berkas`
+-- Table structure for table `tbl_berkas`
 --
 
 CREATE TABLE `tbl_berkas` (
@@ -102,31 +102,25 @@ CREATE TABLE `tbl_berkas` (
   `id_dokumen` int(11) NOT NULL,
   `foto` varchar(255) NOT NULL,
   `extension` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tbl_berkas`
+-- Dumping data for table `tbl_berkas`
 --
 
 INSERT INTO `tbl_berkas` (`id`, `id_dokumen`, `foto`, `extension`) VALUES
-(89, 113, '690e0fbc67c12d084ba7559bc371c569.pdf', 'pdf'),
-(90, 113, '6447a0b76f3023b76a0a63dea57dba7b.xlsx', 'xlsx'),
-(98, 116, '8f1ef7f02c41939c62f9669a588e3a09.jpg', 'jpg'),
 (99, 116, 'CONTOH.xlsx', 'xlsx'),
 (100, 116, 'email.xlsx', 'xlsx'),
-(104, 116, 'bisa.png', 'png'),
-(105, 119, 'acaratambah.png', 'png'),
-(111, 122, '230f423b24020b78889d99cfc15eafa8.jpg', ''),
-(112, 122, '01e983f1d9a3c698b0cbaf6b8a8b2225.jpg', ''),
-(113, 122, '116a567041b812144e574ad4201e65c5.jpg', ''),
-(114, 122, 'cb4a43cda122b38373d3b52424771aa9.jpg', ''),
-(115, 122, 'fd824343f4a6e8e69a762e76add7c563.jpg', ''),
-(116, 5, 'e2a5890b2e25bdaec10a225c5684974b.jpg', 'jpg');
+(126, 127, 'IMG-20201219-WA0028.jpg', 'jpg'),
+(116, 5, 'e2a5890b2e25bdaec10a225c5684974b.jpg', 'jpg'),
+(125, 127, 'IMG-20201219-WA0030.jpg', 'jpg'),
+(124, 127, 'IMG-20201219-WA0027.jpg', 'jpg'),
+(123, 127, 'IMG-20201219-WA0029.jpg', 'jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_slider`
+-- Table structure for table `tbl_slider`
 --
 
 CREATE TABLE `tbl_slider` (
@@ -134,10 +128,10 @@ CREATE TABLE `tbl_slider` (
   `judul` varchar(255) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
   `file` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tbl_slider`
+-- Dumping data for table `tbl_slider`
 --
 
 INSERT INTO `tbl_slider` (`id`, `judul`, `deskripsi`, `file`) VALUES
@@ -148,59 +142,59 @@ INSERT INTO `tbl_slider` (`id`, `judul`, `deskripsi`, `file`) VALUES
 --
 
 --
--- Indeks untuk tabel `dokumen`
+-- Indexes for table `dokumen`
 --
 ALTER TABLE `dokumen`
   ADD PRIMARY KEY (`id_dokumen`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`no_induk`);
 
 --
--- Indeks untuk tabel `tbl_berkas`
+-- Indexes for table `tbl_berkas`
 --
 ALTER TABLE `tbl_berkas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_slider`
+-- Indexes for table `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `dokumen`
+-- AUTO_INCREMENT for table `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_berkas`
+-- AUTO_INCREMENT for table `tbl_berkas`
 --
 ALTER TABLE `tbl_berkas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_slider`
+-- AUTO_INCREMENT for table `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
