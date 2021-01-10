@@ -29,7 +29,7 @@
         </button>
       </div>
       <div class="card-body p-0">
-        <table id="example1" class="table table-striped projects">
+        <table id="example2" class="table table-striped projects">
           <thead>
             <tr>
               <th style="width: 1%">

@@ -74,7 +74,7 @@
                 </td>
                 <td>
                   <!-- <p><?php echo substr($doku['deskripsi'], 0, 40); ?></p> -->
-                  <p><?= $doku['tanggal'] ?></p>
+                  <p><?= date('d M Y',strtotime($doku['tanggal'])) ?></p>
                 </td>
                 <td>
                   <span class="badge badge-success"><?= $doku['nama_kategori']; ?></span>

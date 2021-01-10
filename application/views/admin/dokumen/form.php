@@ -27,7 +27,7 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <a href="<?php echo base_url('dokumentasi/') ?>" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
+              <a href="<?php echo base_url('dokumentasi/') ?>" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -59,7 +59,7 @@
                     <input type="text" class="form-control" name="tema" value="<?= isset($doku->tema) ? $doku->tema : set_value('tema') ?>" placeholder="Masukan Tema" required>
                   </div>
                   <div class="form-group">
-                    <label>Date:</label>
+                    <label>Tanggal</label>
                     <div class="input-group date col-8" id="reservationdate" data-target-input="nearest">
                       <input type="text" value="<?= isset($doku->tanggal) ? $doku->tanggal : set_value('tanggal') ?>" class="form-control datetimepicker-input" name="tanggal" data-target="#reservationdate" />
                       <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">

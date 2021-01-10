@@ -8,25 +8,14 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/fonts/icomoon/style.css' ?>">
-
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/bootstrap.min.css' ?>">
-  <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/magnific-popup.css' ?>">
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/jquery-ui.css' ?>">
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/owl.carousel.min.css' ?>">
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/owl.theme.default.min.css' ?>">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/daterangepicker/daterangepicker.css' ?>">
-
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/lightgallery.min.css' ?>">
-
-  <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/bootstrap-datepicker.css' ?>">
-
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/fonts/flaticon/font/flaticon.css' ?>">
-
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/swiper.css' ?>">
-
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/aos.css' ?>">
-
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/style.css' ?>">
 
 </head>
@@ -48,8 +37,6 @@
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-6 col-xl-2" data-aos="fade-down">
-            <!-- <h3 class="mb-0"><a href="<?php echo base_url() ?>" class="text-white mb-0">
-          <img src="<?php echo base_url() . 'assets/images/logo.png' ?>" width="40" alt="">USB YPKP</a></h3> -->
             <img src="<?php echo base_url() . 'assets/images/logo.png' ?>" width="90%" alt="">
           </div>
           <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">

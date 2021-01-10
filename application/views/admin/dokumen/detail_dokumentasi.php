@@ -48,7 +48,7 @@
                                     <label>Tanggal</label>
                                     <input type="date" name="tanggal" value="<?= $doku->tanggal; ?>" class="form-control-plaintext" readonly>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Kategori</label>
                                     <input type="text" value="<?= $doku->nama_kategori; ?>" class="form-control-plaintext" readonly>
@@ -119,14 +119,14 @@
                                 <div class="row" id="lightgallery">
                                     <?php
                                     foreach ($berkas as $brks) : ?>
-                                    <?php if ($brks->extension == 'jpg' || $brks->extension == 'png' || $brks->extension == 'gif' || $brks->extension == 'jpeg') : ?>
-                                        <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url('/upload/') . $brks->foto; ?>">
-                                            <img src="<?php echo base_url('/upload/') . $brks->foto; ?>" alt="Image" class="img-fluid">
-                                        </div>
-                                        <?php endif?>
+                                        <?php if ($brks->extension == 'jpg' || $brks->extension == 'png' || $brks->extension == 'gif' || $brks->extension == 'jpeg') : ?>
+                                            <div class="form-group col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="<?php echo base_url('/upload/') . $brks->foto; ?>">
+                                                <img src="<?php echo base_url('/upload/') . $brks->foto; ?>" alt="Image" class="img-fluid">
+                                            </div>
+                                        <?php endif ?>
                                     <?php endforeach; ?>
                                 </div>
-                               
+
                                 <!-- /.card-body -->
                             </div>
                         </form>

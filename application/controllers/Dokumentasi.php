@@ -167,8 +167,7 @@ class Dokumentasi extends CI_Controller
             // redirect('admin/dokumentasi', 'refresh');
             $this->index();
         }
-
-        $this->doku->createDokumen($data_order);
+      
     }
 
     //Update one item

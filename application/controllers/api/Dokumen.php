@@ -20,37 +20,35 @@ class Dokumen extends REST_Controller
     {
         $id_dokumen = $this->get('id_dokumen');
         if ($id_dokumen == null) {
-            $data = $this->doku->getDokumenapi();
+            $doku = $this->doku->getDokumenapi();
+            if ($doku) {
+                // Set the respone and exit
+                $this->response([
+                    'status' => true,
+                    'data' => $doku
+                ], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+            }
         } else {
             // $data = $this->doku->getDokumenapi($id_dokumen);
             $this->db->where('id_dokumen', $id_dokumen);
             $doku = $this->db->get('dokumen')->result();
             $this->db->reset_query();
-            // $this->db->where('id_dokumen', $id_dokumen);
-            $query = $this->db->query("SELECT * FROM tbl_berkas WHERE id_dokumen = $id_dokumen AND extension IN ('png','jpg')");
-            
-            // $this->db->select('tbl_berkas.*');
-            // $this->db->from('tbl_berkas');
-            // $this->db->where('id_dokumen', $id_dokumen);
-            // $this->db->where('extension','jpg');
-            // $this->db->or_where_in('extension','png');
-            // // $this->db->where_in('extension','jpg');
-            // $query = $this->db->get()->result();
-            $doku1 = $query->result();
-        }
+            $query = $this->db->query("SELECT * FROM tbl_berkas WHERE id_dokumen = $id_dokumen AND extension IN ('png','jpg','gif')");
 
-        if ($doku) {
-            // Set the respone and exit
-            $this->response([
-                'status' => true,
-                'data' => $doku, $doku1
-            ], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
-        } else {
-            //Set the response and exit
-            $this->response([
-                'status' => false,
-                'message' => 'Dokumen id Tidak Ada'
-            ], REST_Controller::HTTP_NOT_FOUND); // Not Found (404) being the HTTP response code
+            $doku1 = $query->result();
+            if ($doku) {
+                // Set the respone and exit
+                $this->response([
+                    'status' => true,
+                    'data' => $doku, $doku1
+                ], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+            } else {
+                //Set the response and exit
+                $this->response([
+                    'status' => false,
+                    'message' => 'Dokumen id Tidak Ada'
+                ], REST_Controller::HTTP_NOT_FOUND); // Not Found (404) being the HTTP response code
+            }
         }
     }
 

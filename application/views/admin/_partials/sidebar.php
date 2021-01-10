@@ -42,7 +42,7 @@
             <a href="<?php echo base_url('admin') ?>" class="nav-link <?= $this->uri->segment(1) == 'admin' ? 'active' : ''; ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Beranda
               </p>
             </a>
           </li>
@@ -59,7 +59,7 @@
               <a href="<?php echo base_url('user') ?>" class="nav-link <?= $this->uri->segment(1) == 'user' || $this->uri->segment(2) == 'editusers'  ? 'active' : ''; ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
-                  Users
+                  Anggota
                 </p>
               </a>
             </li>
@@ -67,7 +67,7 @@
               <a href="<?php echo base_url('setting') ?>" class="nav-link <?= $this->uri->segment(1) == 'setting' ? 'active' : ''; ?>">
                 <i class="nav-icon fas fa-bars"></i>
                 <p>
-                  Setting
+                  Pengaturan
                 </p>
               </a>
             </li>
@@ -76,7 +76,7 @@
             <a href="<?php echo base_url('login/logout') ?>" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
-                Log Out
+                Keluar
               </p>
             </a>
           </li>
