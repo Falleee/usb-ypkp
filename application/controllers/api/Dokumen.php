@@ -14,6 +14,8 @@ class Dokumen extends REST_Controller
         parent::__construct();
         $this->load->model('M_dokumen', 'doku');
         $this->load->library('upload');
+        $this->load->library('form_validation');
+
     }
 
     public function index_get()
@@ -83,8 +85,7 @@ class Dokumen extends REST_Controller
             $image_path = "upload/$data[file_name]";
             $data_order['nama_file'] = $image_path;
         }
-
-        $data_order = array(
+        $data_order = [
             'id_kategori' => $id_kategori,
             'nama_file' => $image_path,
             'judul' => $judul,
@@ -92,24 +93,22 @@ class Dokumen extends REST_Controller
             'ketua' => $ketua,
             'tanggal' => $tanggal,
             'deskripsi' => $deskripsi
-        );
+        ];
         $insert = $this->doku->createDokumen($data_order);
         $insertId_dokumen = $this->db->insert_id();
         $this->db->reset_query();
         $config['upload_path'] = './upload/';
         $config['allowed_types'] = 'png|gif|jpg|jpeg';
-        $config['encrypt_name'] = TRUE;
+        $config['encrypt_name'] = FALSE;
         $this->upload->initialize($config);
         $jml_foto = count($_FILES['foto']['name']);
         for ($i = 0; $i < $jml_foto; $i++) {
             if (!empty($_FILES['foto']['name'][$i])) {
-
                 $_FILES['file']['name'] = $_FILES['foto']['name'][$i];
                 $_FILES['file']['type'] = $_FILES['foto']['type'][$i];
                 $_FILES['file']['tmp_name'] = $_FILES['foto']['tmp_name'][$i];
                 $_FILES['file']['error'] = $_FILES['foto']['error'][$i];
                 $_FILES['file']['size'] = $_FILES['foto']['size'][$i];
-
                 if ($this->upload->do_upload('file')) {
                     $uploadData = $this->upload->data();
                     $extensi = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
