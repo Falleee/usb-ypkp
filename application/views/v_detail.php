@@ -1,18 +1,18 @@
 <div class="site-section" data-aos="fade">
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
             <div class="col-md-7">
-                <div class="row mb-5">
-                    <div class="col-12 ">
-                        <h2 class="site-section-heading text-center"><?= $doku->judul ?></h2>
-                    </div>
-                </div>
             </div>
-        </div>
+        </div> -->
+        <h2 class="site-section-heading"><?= $doku->judul ?></h2>
         <div class="row mb-5">
             <div class="col-md-7">
-                <img src="<?php echo base_url() . $doku->nama_file; ?>" alt="Image" class="img-fluid">
-                Tema:<button type="button" class="btn btn-light m-2"><?= $doku->nama_kategori; ?></button>
+                <small>
+                    <em>
+                        Penanggung Jawab : <?= $doku->ketua ?> | Kategori : <?= $doku->nama_kategori ?> | Tema : <?= $doku->tema ?> | Tanggal: <?= $doku->tanggal ?>
+                    </em>
+                </small>
+                <img src="<?php echo base_url() . $doku->nama_file; ?>" alt="Image" class="img-fluid"><a href="<?php echo base_url() . $doku->nama_file; ?>"></a>
             </div>
             <div class="col-md-4 ml-auto">
                 <h3 class="text-dark"></h3>

@@ -34,25 +34,33 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Nama Acara</label>
-                                    <input type="text" name="judul" value="<?= $doku->judul; ?>" class="form-control-plaintext" readonly>
+                                    <input type="text" name="judul" value="<?= $doku->judul; ?>" class="form-control" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>Penanggung Jawab</label>
-                                    <input type="text" name="penanggungjawab" value="<?= $doku->ketua; ?>" class="form-control-plaintext" readonly>
+                                    <input type="text" name="penanggungjawab" value="<?= $doku->ketua; ?>" class="form-control" readonly>
                                 </div>
-                                <div class="form-group">
-                                    <label>Tema</label>
-                                    <input type="text" name="tema" value="<?= $doku->tema; ?>" class="form-control-plaintext" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tanggal</label>
-                                    <input type="date" name="tanggal" value="<?= $doku->tanggal; ?>" class="form-control-plaintext" readonly>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tema</label>
+                                            <input type="text" name="tema" value="<?= $doku->tema; ?>" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kategori</label>
+                                            <input type="text" value="<?= $doku->nama_kategori; ?>" class="form-control" readonly>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Kategori</label>
-                                    <input type="text" value="<?= $doku->nama_kategori; ?>" class="form-control-plaintext" readonly>
+                                    <label>Tanggal</label>
+                                    <input type="date" name="tanggal" value="<?= $doku->tanggal; ?>" class="form-control" readonly>
                                 </div>
+
+
                                 <div class="form-group">
                                     <label for="row">Thumbnail</label>
                                 </div>
@@ -63,7 +71,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <p><?= $doku->deskripsi; ?></p>
+                                    
+                                    <textarea name="xdesk" id="ckeditor" disabled><?= isset($doku->deskripsi) ? $doku->deskripsi : set_value('deskripsi') ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="row"> Berkas Lainya</label>

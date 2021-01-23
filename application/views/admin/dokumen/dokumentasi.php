@@ -87,7 +87,7 @@
                     <a class="dropdown-item" href="<?= base_url('dokumentasi/detail/') ?><?= $doku['id_dokumen']; ?>"><i class="fas fa-folder"></i> Detail</a>
                     <a class="dropdown-item" href="<?= base_url('dokumentasi/edit/') ?><?= $doku['id_dokumen']; ?>"><i class="fas fa-pencil-alt"></i> Edit</a>
                     <?php if ($login['role'] == 1) : ?>
-                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-delete<?= $doku['id_dokumen']; ?>"><i class="fas fa-trash"></i> Delete</button>
+                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-delete<?= $doku['id_dokumen']; ?>"><i class="fas fa-trash"></i> Hapus</button>
                     <?php endif ?>
                   </div>
                 </td>

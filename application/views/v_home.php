@@ -46,7 +46,7 @@
           <div class="image-wrap-2">
             <div class="image-info">
               <h2 class="mb-3"><?php echo substr($doku['judul'], 0, 20); ?></h2>
-              <a href="<?php echo base_url('home/detail/') ?><?php echo $doku['id_dokumen']; ?>" class="btn btn-outline-white py-2 px-4">More Photos</a>
+              <a href="<?php echo base_url('home/detail/') ?><?php echo $doku['id_dokumen']; ?>" class="btn btn-outline-white py-2 px-4">Foto Lainya</a>
             </div>
             <img src="<?php echo $doku['nama_file']; ?>" alt="Image" class="img-fluid">
           </div>

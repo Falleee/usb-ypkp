@@ -15,13 +15,16 @@
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 <a href="https://usbypkp.ac.id">USB YPKP</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2021 <a href="https://usbypkp.ac.id">USB YPKP</a>.</strong> All rights reserved.
   </footer>
   </div>
   <!-- ./wrapper -->
 
   <!-- REQUIRED SCRIPTS -->
 
+  <!-- ckeditor -->
+  <script src="<?php echo base_url() . 'assets/ckeditor/ckeditor.js' ?>"></script>
+  <!-- ckeditor -->
   <!-- jQuery -->
   <script src="<?php echo base_url() . 'assets/plugins/jquery/jquery.min.js' ?>"></script>
   <!-- Bootstrap 4 -->
@@ -29,18 +32,18 @@
   <!-- AdminLTE App -->
   <script src="<?php echo base_url() . 'assets/dist/js/adminlte.min.js' ?>"></script>
   <!-- DataTables  & Plugins -->
-  <script src="<?php echo base_url() . 'assets/plugins/datatables/jquery.dataTables.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-responsive/js/dataTables.responsive.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/dataTables.buttons.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/jszip/jszip.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/pdfmake/pdfmake.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/pdfmake/vfs_fonts.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.html5.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.print.min.js'?>"></script>
-  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.colVis.min.js'?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables/jquery.dataTables.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-responsive/js/dataTables.responsive.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/dataTables.buttons.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/jszip/jszip.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/pdfmake/pdfmake.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/pdfmake/vfs_fonts.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.html5.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.print.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datatables-buttons/js/buttons.colVis.min.js' ?>"></script>
   <!-- date-range-picker -->
   <script src="<?php echo base_url() . 'assets/plugins/daterangepicker/daterangepicker.js' ?>"></script>
   <!-- bs-custom-file-input -->
@@ -109,6 +112,17 @@
   </script>
 
   <!-- Batas -->
+  <script>
+    $(function() {
+      // Replace the <textarea id="editor1"> with a CKEditor
+      // instance, using default configuration.
+
+      CKEDITOR.replace('ckeditor');
+
+
+    });
+  </script>
+
 
   </body>
 

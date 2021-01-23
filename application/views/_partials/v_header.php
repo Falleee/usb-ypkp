@@ -42,8 +42,7 @@
           <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
             <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                <li class="<?= $this->uri->segment(1) == '' ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>">Home</a></li>
-                <li class="<?= $this->uri->segment(1) == '' ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin">Admin</a></li>
+                <li class="<?= $this->uri->segment(1) == '' ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>">Beranda</a></li>
               </ul>
             </nav>
           </div>
@@ -51,15 +50,17 @@
           <div class="col-6 col-xl-2 text-right" data-aos="fade-down">
             <div class="d-none d-xl-inline-block">
               <ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
-
                 <li>
-                  <a href="#" class="pl-0 pr-3"><span class="icon-facebook text-dark"></span></a>
+                  <a href="https://facebook.com/sanggabuana/" class="pl-0 pr-3"><span class="icon-facebook text-dark"></span></a>
                 </li>
                 <li>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-twitter text-dark"></span></a>
+                  <a href="https://www.youtube.com/channel/UC1YSsjBsD1oE9oihNaZl5ug" class="pl-3 pr-3"><span class="icon-youtube text-dark"></span></a>
                 </li>
                 <li>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-instagram text-dark"></span></a>
+                  <a href="https://www.instagram.com/univsanggabuana/" class="pl-3 pr-3"><span class="icon-instagram text-dark"></span></a>
+                </li>
+                <li>
+                  <a href="<?php echo base_url() ?>admin" class="pl-3 pr-3 text-dark"><span class="icon-user text-dark">admin</span></a>
                 </li>
               </ul>
             </div>

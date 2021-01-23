@@ -54,6 +54,8 @@
                     <?php endif ?>
                   </select>
                 </div>
+                <div class="form-group">
+                <label for="">Kata Sandi</label></div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>

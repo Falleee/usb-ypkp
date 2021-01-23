@@ -45,44 +45,52 @@
                     <label class="text-dark">Penanggung Jawab / Ketua Acara</label>
                     <input type="text" class="form-control" value="<?= isset($doku->ketua) ? $doku->ketua : set_value('ketua') ?>" name="ketua" placeholder="Masukan Penanggung Jawab" required>
                   </div>
-                  <div class="form-group">
-                    <label for="inputStatus" class="text-dark">Kategori</label><br>
-                    <select id="inputStatus" class="form-control col-8 custom-select" name="kategori">
-                      <?php
-                      foreach ($kategori->result_array() as $ktgr) : ?>
-                        <option value="<?= $ktgr['id_kategori']; ?>"><?= $ktgr['kategori']; ?></option>
-                      <?php endforeach; ?>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="text-dark">Tema</label>
-                    <input type="text" class="form-control" name="tema" value="<?= isset($doku->tema) ? $doku->tema : set_value('tema') ?>" placeholder="Masukan Tema" required>
-                  </div>
-                  <div class="form-group">
-                    <label>Tanggal</label>
-                    <div class="input-group date col-8" id="reservationdate" data-target-input="nearest">
-                      <input type="text" value="<?= isset($doku->tanggal) ? $doku->tanggal : set_value('tanggal') ?>" class="form-control datetimepicker-input" name="tanggal" data-target="#reservationdate" />
-                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="text-dark">Tema</label>
+                        <input type="text" class="form-control" name="tema" value="<?= isset($doku->tema) ? $doku->tema : set_value('tema') ?>" placeholder="Masukan Tema" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="inputStatus" class="text-dark">Kategori</label><br>
+                        <select id="inputStatus" class="form-control custom-select" name="kategori">
+                          <?php foreach ($kategori as $ktgr) {
+                            $kategori_id = $ktgr->id_kategori;
+                            $kategori = $ktgr->kategori;
+                            if ($doku->id_kategori == $kategori_id)
+                              echo "<option value='$kategori_id' selected>$kategori</option>";
+                            else
+                              echo "<option value='$kategori_id'>$kategori</option>";
+                          } ?>
+                        </select>
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile" class="text-dark">Thumbnails</label>
-                    <?php if ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "create") : ?>
-                      <div class="input-group col-8">
-                        <div class="custom-file">
-                          <input type="file" name="nama_file" class="custom-file-input" id="exampleInputFile" required>
-                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputFile" class="text-dark">Thumbnails</label>
+                        <?php if ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "create") : ?>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" name="nama_file" class="custom-file-input" id="exampleInputFile" required>
+                              <label class="custom-file-label" for="exampleInputFile">Ambil Foto</label>
+                            </div>
+                          </div>
+                        <?php else : ?>
+                          <br>
+                          <a href="<?php echo base_url(), $doku->nama_file; ?>" target="_blank"><img class="form-group" src="<?php echo base_url(), $doku->nama_file; ?>" alt="" width="20%"></a>
+                        <?php endif ?>
                       </div>
-                    <?php else : ?>
-                      <a href="<?php echo base_url(), $doku->nama_file; ?>" target="_blank"><img class="form-group" src="<?php echo base_url(), $doku->nama_file; ?>" alt="" width="20%"></a>
-                    <?php endif ?>
-                  </div>
-                  <div class="form-group">
-                    <label>Upload File</label>
-                    <input type="file" name="foto[]" class="form-control col-8" multiple="">
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>File Lainya</label>
+                        <input type="file" name="foto[]" class="form-control" multiple="">
+                      </div>
+                    </div>
                   </div>
                   <?php if ($this->uri->segment(2) == "edit") : ?>
                     <div class="form-group">
@@ -145,9 +153,20 @@
                       </div>
                     </div>
                   <?php endif ?>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Tanggal</label>
+                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" value="<?= isset($doku->tanggal) ? $doku->tanggal : set_value('tanggal') ?>" class="form-control datetimepicker-input" name="tanggal" data-target="#reservationdate" />
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-group">
-                    <label class="text-dark">Deskripsi Acara</label>
-                    <textarea name="deskripsi" class="form-control" cols="30" rows="10" placeholder="Deskripsi" required><?= isset($doku->deskripsi) ? $doku->deskripsi : set_value('deskripsi')?></textarea>
+                    <label for="">Desk</label>
+                    <textarea name="xdesk" id="ckeditor"><?= isset($doku->deskripsi) ? $doku->deskripsi : set_value('deskripsi') ?></textarea>
                   </div>
                 </div>
                 <!-- /.card-body -->

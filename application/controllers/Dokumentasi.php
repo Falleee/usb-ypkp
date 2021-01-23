@@ -39,41 +39,6 @@ class Dokumentasi extends CI_Controller
         $this->load->view('admin/_partials/footer');
     }
 
-    public function edit()
-    {
-        $data['title'] = 'Edit Dokumentasi';
-        $data['login'] = $this->db->get_where('login', ['no_induk' =>
-        $this->session->userdata('no_induk')])->row_array();
-        $id = $this->uri->segment(3);
-        $this->db->where('id_dokumen', $id);
-        $data['doku'] = $this->doku->getDetail($id);
-        $this->db->where('id_dokumen',$id);
-        $data['berkas'] = $this->db->get('tbl_berkas')->result();
-        $this->db->reset_query();
-        $data['kategori'] = $this->db->get('kategori');
-        $this->load->view('admin/_partials/header', $data);
-        $this->load->view('admin/_partials/sidebar', $data);
-        $this->load->view('admin/dokumen/form', $data);
-        $this->load->view('admin/_partials/footer');
-    }
-
-    public function detail($id_dokumen)
-    {
-        $data['title'] = 'Detail Dokumentasi';
-        $data['login'] = $this->db->get_where('login', ['no_induk' =>
-        $this->session->userdata('no_induk')])->row_array();
-        
-        $this->db->where('id_dokumen', $id_dokumen);
-        $data['berkas'] = $this->db->get('tbl_berkas')->result();
-        // Untuk Mengambil data dokumen
-        $data['doku'] = $this->doku->getDetail($id_dokumen);
-        // View
-        $this->load->view('admin/_partials/header', $data);
-        $this->load->view('admin/_partials/sidebar', $data);
-        $this->load->view('admin/dokumen/detail_dokumentasi', $data);
-        $this->load->view('admin/_partials/footer');
-    }
-
     public function add()
     {
         $data['title'] = 'Tambah Acara';
@@ -91,9 +56,9 @@ class Dokumentasi extends CI_Controller
     public function create()
     {
         $config['upload_path']      = './upload/';
-        $config['allowed_types']    = 'png|gif|jpg|jpeg|doc|pdf|xlsx';
+        $config['allowed_types']    = 'png|gif|jpg|jpeg|bmp';
         $config['encrypt_name']     = true;
-        $config['max_size']         = 5050;
+        // $config['max_size']         = 5050;
 
         $this->upload->initialize($config);
         if ($this->upload->do_upload('nama_file')) {
@@ -102,7 +67,7 @@ class Dokumentasi extends CI_Controller
             $config['source_image'] = './upload/' . $data['file_name'];
             $config['create_thumb'] = FALSE;
             $config['mintain_ratio'] = FALSE;
-            $config['quality'] = '50%';
+            $config['quality'] = '60%';
             // $config['x_axis'] = 900;
             // $config['y_axis'] = 900;
             $config['width'] = 900;
@@ -119,8 +84,8 @@ class Dokumentasi extends CI_Controller
             'judul' => $this->input->post('judul'),
             'tema' => $this->input->post('tema'),
             'ketua' => $this->input->post('ketua'),
-            'tanggal' => date_format(date_create($this->input->post('tanggal')),'Y-m-d'),
-            'deskripsi' => $this->input->post('deskripsi')
+            'tanggal' => date_format(date_create($this->input->post('tanggal')), 'Y-m-d'),
+            'deskripsi' => $this->input->post('xdesk')
         );
         $insert = $this->doku->createDokumen($data_order);
         // Multiple Upload
@@ -153,21 +118,58 @@ class Dokumentasi extends CI_Controller
         }
         if ($insert > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Berhasil Membuat Acara Baru!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
+            Berhasil Membuat Acara Baru!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
             redirect('dokumentasi', 'refresh');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
-                Gagal Upload Acara!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
+            Gagal Upload Acara!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
             // redirect('admin/dokumentasi', 'refresh');
             $this->index();
         }
-      
+    }
+
+    public function edit()
+    {
+        $data['title'] = 'Edit Dokumentasi';
+        $data['login'] = $this->db->get_where('login', ['no_induk' =>
+        $this->session->userdata('no_induk')])->row_array();
+        $id = $this->uri->segment(3);
+        $this->db->where('id_dokumen', $id);
+        $data['doku'] = $this->doku->getDetail($id);
+        $this->db->where('id_dokumen', $id);
+        $data['berkas'] = $this->db->get('tbl_berkas')->result();
+        $this->db->reset_query();
+        // $cek = $this->db->get_where('dokumen', ['id_dokumen' => $id])->row();
+        // if($cek){}        
+        // $data['kategori'] = $this->db->get('kategori')->result();
+        $data['kategori'] = $this->ktgr->getallkategori();
+        $this->load->view('admin/_partials/header', $data);
+        $this->load->view('admin/_partials/sidebar', $data);
+        $this->load->view('admin/dokumen/form', $data);
+        $this->load->view('admin/_partials/footer');
+    }
+
+    public function detail()
+    {
+        $data['title'] = 'Detail Dokumentasi';
+        $data['login'] = $this->db->get_where('login', ['no_induk' =>
+        $this->session->userdata('no_induk')])->row_array();
+        $id = $this->uri->segment(3);
+        $this->db->where('id_dokumen', $id);
+        $data['berkas'] = $this->db->get('tbl_berkas')->result();
+        // Untuk Mengambil data dokumen
+        $data['doku'] = $this->doku->getDetail($id);
+        // View
+        $this->load->view('admin/_partials/header', $data);
+        $this->load->view('admin/_partials/sidebar', $data);
+        $this->load->view('admin/dokumen/detail_dokumentasi', $data);
+        $this->load->view('admin/_partials/footer');
     }
 
     //Update one item
@@ -198,9 +200,9 @@ class Dokumentasi extends CI_Controller
             'id_kategori' => $this->input->post('kategori'),
             'tema' => $this->input->post('tema'),
             'ketua' => $this->input->post('ketua'),
-            'tanggal' => date_format(date_create($this->input->post('tanggal')),'Y-m-d'),
+            'tanggal' => date_format(date_create($this->input->post('tanggal')), 'Y-m-d'),
             'judul' => $this->input->post('judul'),
-            'deskripsi' => $this->input->post('deskripsi')
+            'deskripsi' => $this->input->post('xdesk')
         );
         $this->db->where('id_dokumen', $id_dokumen);
         $insert = $this->db->update('dokumen', $data);
@@ -234,7 +236,7 @@ class Dokumentasi extends CI_Controller
         }
         if ($insert) {
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Berhasil Update Acara Baru!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                Berhasil Update Acara!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
@@ -248,6 +250,8 @@ class Dokumentasi extends CI_Controller
             $this->index();
         }
     }
+
+    
 
     //Delete one item
     public function delete($id_dokumen)

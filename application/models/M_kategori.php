@@ -12,6 +12,11 @@ class M_kategori extends CI_Model
             return $this->db->get_where('kategori',['id_kategori'=>$id_kategori])->result_array();    
         }
     }
+    public function getallkategori()
+    {
+        $data = $this->db->get('kategori')->result();
+        return $data;
+    }
 
 }
 
